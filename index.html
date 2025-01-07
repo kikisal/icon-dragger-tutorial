@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="icon-dragger.js"></script>
+  </head>
+  <style>
+    .icon-dragger-item {
+      background: #000;
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+    }
+
+    .icon-dragger-item.mouse-dragging {
+      opacity: .5;
+      z-index: 9999;
+    }
+
+
+    * {
+      user-select: none;
+    }
+
+    .icon-dragger-item.move {
+      transition: transform 200ms cubic-bezier(.333,0,0,1);
+    }
+
+
+    body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    icon-dragger {
+      display: block;
+      width: calc((75px + 5px) * 3);
+
+    }
+
+  </style>
+  <body>
+  </body>
+  <script>
+
+    const instance = IconDragger.init({
+      selector: "icon-dragger",
+      margin: {
+        right:  5,
+        bottom: 5
+      },
+
+      itemBuilder: (builder) => {
+        return builder({
+          tagName: "div",
+          classList: ["icon-dragger-item"],
+          style: {background: "#ccc"},
+          children: [
+            {
+              tagName: "span",
+              style: {color: "#fff", background: "#ccc"}
+            }
+          ]
+        });
+      }
+    });
+
+    for (let i = 0; i < 100; ++i) {
+      instance.addItem();
+
+    }
+
+  </script>
+</html>
